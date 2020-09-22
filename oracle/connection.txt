@@ -1,0 +1,56 @@
+Name: ebook
+userName: adarsh
+password: adarsh
+ssid: orcl
+
+
+
+Login as system dba
+
+==============================================================================================
+
+
+creating and deleting a user in oracle;
+
+first we need to alter the session
+
+[
+
+alter session set "_ORACLE_SCRIPT" = true
+grant connect , resource to user_name identified by _password 
+
+Now you can login with that userName and password while making the new connection
+]
+
+show user;
+
+-- this will show the current user
+
+
+
+
+=====Deleting;
+
+first login as system dba
+
+alter session set "_ORACLE_SCRIPT" = true
+drop user user_name;
+
+
+
+
+
+==========================================================================================
+
+
+when new user is created we may get an error that table space is required because we have to give some space to
+newly  created user.
+
+
+SQL> select username,tablespace_name,bytes/1024/1024/1024,MAX_BYTES/1024/1024/1024 from dba_ts_quotas where username='AB585';
+
+SQL> GRANT UNLIMITED TABLESPACE TO <your username>;
+
+
+
+
