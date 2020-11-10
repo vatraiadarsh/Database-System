@@ -251,6 +251,13 @@ db.department.update({ "courses.code": "MAG101" }, { $set: { "courses.$.code": "
  * $count: Counts the total number of documents in a pipeline
 -
  */
+// $project extracts components of subdocuments, rename components, and performs operations on components
+// "$keyname" syntax is used to refer to a value associated with a key "keyname" in the aggregation framework
+
+// Select a name of each department and concatenate it with its code
+db.department.aggregate([
+  { $project: { "Name and code": { $concat: ["$name", "-", "$code"] } } },
+]);
 
 
 // Select name of each department, skip document identifier
